@@ -1,0 +1,22 @@
+{
+  "name": "playwright-pom-bdd",
+  "version": "1.0.0",
+  "scripts": {
+    "test:chrome": "set BROWSER=chrome && cucumber-js --require-module ts-node/register --require src/support/world.ts --require src/steps/**/*.ts --format json:reports/cucumber_report.json",
+    "test:edge": "set BROWSER=msedge && cucumber-js --require-module ts-node/register --require src/support/world.ts --require src/steps/**/*.ts",
+    "test:merge": "node scripts/merge-cucumber.js",
+    "test:report": "npx cucumber-html-reporter --config cucumber-html.config.js",
+    "test:all": "npm run test:chrome && npm run test:edge && npm run test:merge && npm run test:report",
+    "test": "cucumber-js --format json:reports/cucumber_report.json",
+    "report": "node generate-report.js",
+    "test:chrome:report": "npm run test:chrome && npm run report",
+    "cucumber:dry": "cucumber-js --dry-run --require-module ts-node/register --require src/steps/**/*.ts"
+  },
+  "devDependencies": {
+    "@cucumber/cucumber": "^10.0.0",
+    "@playwright/test": "^1.38.0",
+    "cucumber-html-reporter": "^7.2.0",
+    "ts-node": "^10.0.0",
+    "typescript": "^5.0.0"
+  }
+}
