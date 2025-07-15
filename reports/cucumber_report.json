@@ -4,6 +4,80 @@
     "elements": [
       {
         "description": "",
+        "id": "prueba-de-carga-a-la-api-de-facturas;verificar-que-el-endpoint-de-facturas-responda-exitosamente-bajo-carga",
+        "keyword": "Scenario",
+        "line": 4,
+        "name": "Verificar que el endpoint de facturas responda exitosamente bajo carga",
+        "steps": [
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 504781300
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 5,
+            "name": "que se ejecuta una prueba de carga sobre el endpoint de facturas",
+            "match": {
+              "location": "src\\steps\\api.steps.ts:6"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 2299101999
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 6,
+            "name": "todas las respuestas deben tener un status 200",
+            "match": {
+              "location": "src\\steps\\api.steps.ts:31"
+            },
+            "result": {
+              "status": "failed",
+              "duration": 226400,
+              "error_message": "Error: ❌ Se recibió status 404 en una de las respuestas, se esperaba 200\n    at CustomWorld.<anonymous> (C:\\Users\\crist\\OneDrive\\Desktop\\Playwright Proyectos\\playwright-contalink\\playwrigth-contalink\\src\\steps\\api.steps.ts:34:13)"
+            }
+          },
+          {
+            "keyword": "After",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 337679500
+            }
+          }
+        ],
+        "tags": [
+          {
+            "name": "@api",
+            "line": 3
+          },
+          {
+            "name": "@carga",
+            "line": 3
+          }
+        ],
+        "type": "scenario"
+      }
+    ],
+    "id": "prueba-de-carga-a-la-api-de-facturas",
+    "line": 1,
+    "keyword": "Feature",
+    "name": "Prueba de carga a la API de facturas",
+    "tags": [],
+    "uri": "features\\api-load-test.feature"
+  },
+  {
+    "description": "",
+    "elements": [
+      {
+        "description": "",
         "id": "gestión-de-facturas;crear-y-eliminar-una-factura",
         "keyword": "Scenario",
         "line": 4,
@@ -14,7 +88,7 @@
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 517406999
+              "duration": 496605700
             }
           },
           {
@@ -23,11 +97,11 @@
             "line": 5,
             "name": "el usuario inicia sesión con contraseña \"UXTY789@!!1\"",
             "match": {
-              "location": "src\\steps\\contalink.steps.ts:8"
+              "location": "src\\steps\\contalink.steps.ts:15"
             },
             "result": {
               "status": "passed",
-              "duration": 3666502500
+              "duration": 3644056300
             }
           },
           {
@@ -36,11 +110,11 @@
             "line": 6,
             "name": "hace clic en \"Nueva factura\"",
             "match": {
-              "location": "src\\steps\\contalink.steps.ts:15"
+              "location": "src\\steps\\contalink.steps.ts:29"
             },
             "result": {
               "status": "passed",
-              "duration": 120462600
+              "duration": 52798300
             }
           },
           {
@@ -49,11 +123,11 @@
             "line": 7,
             "name": "captura la factura FAC-7081986 con total $1200 y estado \"Vigente\"",
             "match": {
-              "location": "src\\steps\\contalink.steps.ts:31"
+              "location": "src\\steps\\contalink.steps.ts:52"
             },
             "result": {
               "status": "passed",
-              "duration": 3201181399
+              "duration": 3184493800
             }
           },
           {
@@ -62,11 +136,11 @@
             "line": 8,
             "name": "confirma la creación",
             "match": {
-              "location": "src\\steps\\contalink.steps.ts:62"
+              "location": "src\\steps\\contalink.steps.ts:83"
             },
             "result": {
               "status": "passed",
-              "duration": 1072168799
+              "duration": 1062053199
             }
           },
           {
@@ -75,11 +149,11 @@
             "line": 9,
             "name": "la factura \"FAC-7081986\" debe aparecer en los resultados de búsqueda",
             "match": {
-              "location": "src\\steps\\contalink.steps.ts:67"
+              "location": "src\\steps\\contalink.steps.ts:89"
             },
             "result": {
               "status": "passed",
-              "duration": 433858400
+              "duration": 416379800
             }
           },
           {
@@ -88,11 +162,11 @@
             "line": 10,
             "name": "elimina la factura \"FAC-7081986\"",
             "match": {
-              "location": "src\\steps\\contalink.steps.ts:76"
+              "location": "src\\steps\\contalink.steps.ts:100"
             },
             "result": {
               "status": "passed",
-              "duration": 1569846900
+              "duration": 1652203199
             }
           },
           {
@@ -101,11 +175,11 @@
             "line": 11,
             "name": "la factura \"FAC-7081986\" ya no debería estar visible en la lista",
             "match": {
-              "location": "src\\steps\\contalink.steps.ts:86"
+              "location": "src\\steps\\contalink.steps.ts:111"
             },
             "result": {
               "status": "passed",
-              "duration": 7189900
+              "duration": 6567700
             }
           },
           {
@@ -113,7 +187,7 @@
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 288430000
+              "duration": 329990400
             }
           }
         ],
