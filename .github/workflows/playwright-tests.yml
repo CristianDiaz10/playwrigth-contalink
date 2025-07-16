@@ -12,31 +12,31 @@ jobs:
     runs-on: windows-latest
 
     steps:
-    - uses: actions/checkout@v3
+      - uses: actions/checkout@v3
 
-    - uses: actions/setup-node@v3
-      with:
-        node-version: 18
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
 
-    - run: npm install
+      - run: npm install
 
-    - run: npx playwright install --with-deps
+      - run: npx playwright install --with-deps
 
-    - run: npm run test:chrome
+      - run: npm run test:chrome
 
-    - run: npm run test:api
+      - run: npm run test:api
 
-    - run: node generate-report.js
+      - run: node generate-report.js
 
-    - run: npm run report:api
+      - run: npm run report:api
 
-- name: Upload reports
-  if: always()
-  uses: actions/upload-artifact@v4
-  with:
-    name: cucumber-playwright-reports
-    path: |
-      reports/
-      reports/api/
-      reports/cucumber_report.html
-      reports/cucumber_report.json
+      - name: Upload reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cucumber-playwright-reports
+          path: |
+            reports/
+            reports/api/
+            reports/cucumber_report.html
+            reports/cucumber_report.json
