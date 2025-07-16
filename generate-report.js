@@ -5,7 +5,7 @@ const options = {
   jsonFile: 'reports/cucumber_report.json',   // Ruta del JSON generado por cucumber-js
   output: 'reports/cucumber_report.html',     // Ruta donde se guardará el reporte HTML
   reportSuiteAsScenarios: true,
-  launchReport: true,                         // Cambia a true para abrir el reporte automáticamente
+  launchReport: false,                         // Cambia a true para abrir el reporte automáticamente
   metadata: {
     "App Version": "1.0.0",
     "Test Environment": "QA",

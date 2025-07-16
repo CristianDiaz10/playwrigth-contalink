@@ -3,7 +3,7 @@ module.exports = {
   jsonFile: 'reports/cucumber_report.json',
   output: 'reports/cucumber_report.html',
   reportSuiteAsScenarios: true,
-  launchReport: true,
+  launchReport: false,
   metadata: {
     "App Name": "Contalink UI",
     "Test Environment": "QA",
