@@ -1,4 +1,4 @@
-name: Playwright + Cucumber Tests
+name: Playwright + Cucumber Tests on Windows
 
 on:
   push:
@@ -8,34 +8,26 @@ on:
 
 jobs:
   test:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
 
     steps:
-    - name: Checkout repo
-      uses: actions/checkout@v3
+    - uses: actions/checkout@v3
 
-    - name: Setup Node.js 18
-      uses: actions/setup-node@v3
+    - uses: actions/setup-node@v3
       with:
         node-version: 18
 
-    - name: Install dependencies
-      run: npm install
+    - run: npm install
 
-    - name: Install Playwright Browsers
-      run: npx playwright install --with-deps
+    - run: npx playwright install --with-deps
 
-    - name: Run Cucumber tests (UI)
-      run: npm run test:ci
+    - run: npm run test:chrome
 
-    - name: Run Playwright API tests
-      run: npm run test:api
+    - run: npm run test:api
 
-    - name: Merge reports (si tienes ese script)
-      run: npm run test:merge
+    - run: node generate-report.js
 
-    - name: Generate HTML report (cucumber)
-      run: npm run test:report
+    - run: npm run report:api
 
     - name: Upload reports
       if: always()

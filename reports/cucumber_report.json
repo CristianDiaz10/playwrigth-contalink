@@ -1,0 +1,214 @@
+[
+  {
+    "description": "",
+    "elements": [
+      {
+        "description": "",
+        "id": "prueba-de-carga-a-la-api-de-facturas;verificar-que-el-endpoint-de-facturas-responda-exitosamente-bajo-carga",
+        "keyword": "Scenario",
+        "line": 4,
+        "name": "Verificar que el endpoint de facturas responda exitosamente bajo carga",
+        "steps": [
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 639334100
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 5,
+            "name": "que se ejecuta una prueba de carga sobre el endpoint de facturas",
+            "match": {
+              "location": "src\\steps\\api.steps.ts:6"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 2280239100
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 6,
+            "name": "todas las respuestas deben tener un status 200",
+            "match": {
+              "location": "src\\steps\\api.steps.ts:31"
+            },
+            "result": {
+              "status": "failed",
+              "duration": 346700,
+              "error_message": "Error: ❌ Se recibió status 404 en una de las respuestas, se esperaba 200\n    at CustomWorld.<anonymous> (C:\\Users\\crist\\OneDrive\\Desktop\\Playwright Proyectos\\playwright-contalink\\playwrigth-contalink\\src\\steps\\api.steps.ts:34:13)"
+            }
+          },
+          {
+            "keyword": "After",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 429175000
+            }
+          }
+        ],
+        "tags": [
+          {
+            "name": "@api",
+            "line": 3
+          },
+          {
+            "name": "@carga",
+            "line": 3
+          }
+        ],
+        "type": "scenario"
+      }
+    ],
+    "id": "prueba-de-carga-a-la-api-de-facturas",
+    "line": 1,
+    "keyword": "Feature",
+    "name": "Prueba de carga a la API de facturas",
+    "tags": [],
+    "uri": "features\\api-load-test.feature"
+  },
+  {
+    "description": "",
+    "elements": [
+      {
+        "description": "",
+        "id": "gestión-de-facturas;crear-y-eliminar-una-factura",
+        "keyword": "Scenario",
+        "line": 4,
+        "name": "Crear y eliminar una factura",
+        "steps": [
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 508147799
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 5,
+            "name": "el usuario inicia sesión con contraseña \"UXTY789@!!1\"",
+            "match": {
+              "location": "src\\steps\\contalink.steps.ts:15"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 3844615499
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 6,
+            "name": "hace clic en \"Nueva factura\"",
+            "match": {
+              "location": "src\\steps\\contalink.steps.ts:29"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 56686299
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 7,
+            "name": "captura la factura FAC-7081986 con total $1200 y estado \"Vigente\"",
+            "match": {
+              "location": "src\\steps\\contalink.steps.ts:52"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 3163203000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 8,
+            "name": "confirma la creación",
+            "match": {
+              "location": "src\\steps\\contalink.steps.ts:83"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1059751299
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 9,
+            "name": "la factura \"FAC-7081986\" debe aparecer en los resultados de búsqueda",
+            "match": {
+              "location": "src\\steps\\contalink.steps.ts:89"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 428421300
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 10,
+            "name": "elimina la factura \"FAC-7081986\"",
+            "match": {
+              "location": "src\\steps\\contalink.steps.ts:100"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1522781199
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 11,
+            "name": "la factura \"FAC-7081986\" ya no debería estar visible en la lista",
+            "match": {
+              "location": "src\\steps\\contalink.steps.ts:111"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 7358399
+            }
+          },
+          {
+            "keyword": "After",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 353117400
+            }
+          }
+        ],
+        "tags": [
+          {
+            "name": "@regression",
+            "line": 3
+          },
+          {
+            "name": "@factura",
+            "line": 3
+          }
+        ],
+        "type": "scenario"
+      }
+    ],
+    "id": "gestión-de-facturas",
+    "line": 1,
+    "keyword": "Feature",
+    "name": "Gestión de facturas",
+    "tags": [],
+    "uri": "features\\contalink.feature"
+  }
+]
