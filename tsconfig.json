@@ -6,9 +6,9 @@
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    "rootDir": "src",          // Carpeta raíz de código fuente
-    "outDir": "dist",          // Carpeta donde se compilarán archivos JS
+    "rootDir": ".",          // Ahora la raíz es la carpeta raíz del proyecto
+    "outDir": "dist",
     "moduleResolution": "node"
   },
-  "include": ["src/**/*"]       // Incluye todos los archivos TS dentro de src
+  "include": ["features/**/*.ts", "steps/**/*.ts", "src/**/*.ts"]
 }

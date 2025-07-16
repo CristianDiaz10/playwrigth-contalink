@@ -7,6 +7,8 @@ import { Browser, BrowserContext, Page, chromium, firefox } from "@playwright/te
 import { InvoicePage } from '../pages/contalink';
 // Importa tu Page Object para manejar la página de facturas
 
+
+
 export class CustomWorld {
   // Clase personalizada que actuará como contexto para tus tests Cucumber
 

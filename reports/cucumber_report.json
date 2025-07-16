@@ -1,0 +1,188 @@
+[
+  {
+    "description": "",
+    "elements": [
+      {
+        "description": "",
+        "id": "gestión-de-facturas;crear-y-eliminar-una-factura",
+        "keyword": "Scenario",
+        "line": 4,
+        "name": "Crear y eliminar una factura",
+        "steps": [
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 1183096599
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 5,
+            "name": "el usuario inicia sesión con contraseña \"UXTY789@!!1\"",
+            "match": {
+              "location": "src\\steps\\contalink.steps.ts:15"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 3723842499
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 6,
+            "name": "hace clic en \"Nueva factura\"",
+            "match": {
+              "location": "src\\steps\\contalink.steps.ts:29"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 65821300
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 7,
+            "name": "captura la factura FAC-7081986 con total $1200 y estado \"Vigente\"",
+            "match": {
+              "location": "src\\steps\\contalink.steps.ts:52"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 3233029700
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 8,
+            "name": "confirma la creación",
+            "match": {
+              "location": "src\\steps\\contalink.steps.ts:83"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1061561299
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 9,
+            "name": "la factura \"FAC-7081986\" debe aparecer en los resultados de búsqueda",
+            "match": {
+              "location": "src\\steps\\contalink.steps.ts:89"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 461331799
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 10,
+            "name": "elimina la factura \"FAC-7081986\"",
+            "match": {
+              "location": "src\\steps\\contalink.steps.ts:100"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1452682600
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 11,
+            "name": "la factura \"FAC-7081986\" ya no debería estar visible en la lista",
+            "match": {
+              "location": "src\\steps\\contalink.steps.ts:111"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 5430199
+            }
+          },
+          {
+            "keyword": "After",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 674150200
+            }
+          }
+        ],
+        "tags": [
+          {
+            "name": "@regression",
+            "line": 3
+          },
+          {
+            "name": "@factura",
+            "line": 3
+          }
+        ],
+        "type": "scenario"
+      }
+    ],
+    "id": "gestión-de-facturas",
+    "line": 1,
+    "keyword": "Feature",
+    "name": "Gestión de facturas",
+    "tags": [],
+    "uri": "features\\contalink.feature"
+  },
+  {
+    "description": "",
+    "elements": [
+      {
+        "description": "",
+        "id": "test-de-performance-api-invoices;ejecutar-test-de-carga-con-k6-para-la-api-de-facturas",
+        "keyword": "Scenario",
+        "line": 3,
+        "name": "Ejecutar test de carga con k6 para la API de facturas",
+        "steps": [
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 517026200
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 4,
+            "name": "ejecuto el test de performance k6",
+            "result": {
+              "status": "undefined",
+              "duration": 0
+            }
+          },
+          {
+            "keyword": "After",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 320144500
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      }
+    ],
+    "id": "test-de-performance-api-invoices",
+    "line": 1,
+    "keyword": "Feature",
+    "name": "Test de Performance API Invoices",
+    "tags": [],
+    "uri": "features\\performance.feature"
+  }
+]
