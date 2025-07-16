@@ -1,25 +1,34 @@
 name: Playwright Tests
+# Nombre del workflow que aparecerá en GitHub Actions
 
 on:
   push:
     branches: [main]
   pull_request:
     branches: [main]
+# Define cuándo se ejecuta el workflow:
+# - Cada vez que haces push a la rama "main"
+# - Cada vez que se crea o actualiza un pull request hacia "main"
 
 jobs:
   test:
     runs-on: ubuntu-latest
+    # Define el ambiente donde se ejecuta el job (un runner con Ubuntu)
 
     steps:
     - uses: actions/checkout@v3
+      # Paso para clonar el repositorio en el runner, necesario para acceder al código
 
     - uses: actions/setup-node@v3
       with:
         node-version: '18'
+      # Instala Node.js versión 18 en el runner para poder correr npm y Playwright
 
     - run: npm install
+      # Instala las dependencias del proyecto según el package.json
 
     - run: npx playwright test
+      # Ejecuta las pruebas automatizadas definidas con Playwright
 
     - name: Upload Playwright report
       if: always()
@@ -27,3 +36,5 @@ jobs:
       with:
         name: playwright-report
         path: playwright-report/
+      # Siempre (independientemente de éxito o fallo) sube la carpeta de reportes generada por Playwright
+      # Esto permite descargar los reportes desde la pestaña Actions en GitHub para revisarlos
