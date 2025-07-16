@@ -1,24 +1,21 @@
 import { defineConfig } from '@playwright/test';
 
 export default defineConfig({
-  testDir: './tests', // carpeta por defecto (puedes dejarla así)
-  reporter: [['html', { outputFolder: 'reports', open: 'never' }]], // reporte global por defecto
+  testDir: './tests',
   projects: [
     {
       name: 'ui',
-      testDir: './tests/ui', // tests UI
-      use: {
-        headless: false,
-      },
+      testDir: './tests/ui',
+      use: { headless: false },
       outputDir: 'test-results/ui',
+      reporter: [['html', { outputFolder: 'reports/ui', open: 'never' }]],
     },
     {
       name: 'api',
-      testDir: './src/apis', // tests API
-      use: {
-        headless: true,
-      },
-      outputDir: 'test-results/api-temp',
+      testDir: './src/apis',
+      use: { headless: true },
+      outputDir: 'test-results/api',
+      reporter: [['html', { outputFolder: 'reports/api', open: 'never' }]],
     },
   ],
 });
