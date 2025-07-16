@@ -8,6 +8,7 @@ on:
 
 jobs:
   test:
+    name: Ejecutar pruebas UI y APIS
     runs-on: windows-latest
 
     steps:
@@ -29,13 +30,13 @@ jobs:
 
     - run: npm run report:api
 
-    - name: Upload reports
-      if: always()
-      uses: actions/upload-artifact@v3
-      with:
-        name: cucumber-playwright-reports
-        path: |
-          reports/
-          reports/api/
-          reports/cucumber_report.html
-          reports/cucumber_report.json
+- name: Upload reports
+  if: always()
+  uses: actions/upload-artifact@v4
+  with:
+    name: cucumber-playwright-reports
+    path: |
+      reports/
+      reports/api/
+      reports/cucumber_report.html
+      reports/cucumber_report.json
