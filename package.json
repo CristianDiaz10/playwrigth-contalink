@@ -19,7 +19,8 @@
     "test:api:report": "npx playwright show-report reports/api",
     "report": "node generate-report.js",
     "cucumber:dry": "cucumber-js --dry-run --require-module ts-node/register --require src/steps/**/*.ts",
-    "test:ci": "npx cucumber-js --publish-quiet"
+    "test:ci": "npx cucumber-js --publish-quiet",
+    "default": "--require-module ts-node/register --require src/steps/**/*.ts --format json:reports/cucumber-report.json --format progress"
   },
   "devDependencies": {
     "@cucumber/cucumber": "^10.0.0",

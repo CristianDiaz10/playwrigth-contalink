@@ -14,7 +14,7 @@
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 1183096599
+              "duration": 505183200
             }
           },
           {
@@ -27,7 +27,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 3723842499
+              "duration": 3683311899
             }
           },
           {
@@ -40,7 +40,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 65821300
+              "duration": 52119200
             }
           },
           {
@@ -53,7 +53,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 3233029700
+              "duration": 3179989999
             }
           },
           {
@@ -66,7 +66,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 1061561299
+              "duration": 1060296800
             }
           },
           {
@@ -79,7 +79,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 461331799
+              "duration": 351715000
             }
           },
           {
@@ -92,7 +92,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 1452682600
+              "duration": 1559561900
             }
           },
           {
@@ -105,7 +105,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 5430199
+              "duration": 8946099
             }
           },
           {
@@ -113,7 +113,7 @@
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 674150200
+              "duration": 381220699
             }
           }
         ],
@@ -152,7 +152,7 @@
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 517026200
+              "duration": 505246199
             }
           },
           {
@@ -160,9 +160,12 @@
             "keyword": "Then ",
             "line": 4,
             "name": "ejecuto el test de performance k6",
+            "match": {
+              "location": "src\\steps\\performance.steps.ts:17"
+            },
             "result": {
-              "status": "undefined",
-              "duration": 0
+              "status": "passed",
+              "duration": 31585041799
             }
           },
           {
@@ -170,7 +173,7 @@
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 320144500
+              "duration": 249656300
             }
           }
         ],
