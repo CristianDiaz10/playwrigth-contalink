@@ -14,7 +14,7 @@
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 639334100
+              "duration": 909511100
             }
           },
           {
@@ -27,7 +27,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 2280239100
+              "duration": 2326506799
             }
           },
           {
@@ -40,7 +40,7 @@
             },
             "result": {
               "status": "failed",
-              "duration": 346700,
+              "duration": 192699,
               "error_message": "Error: ❌ Se recibió status 404 en una de las respuestas, se esperaba 200\n    at CustomWorld.<anonymous> (C:\\Users\\crist\\OneDrive\\Desktop\\Playwright Proyectos\\playwright-contalink\\playwrigth-contalink\\src\\steps\\api.steps.ts:34:13)"
             }
           },
@@ -49,7 +49,7 @@
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 429175000
+              "duration": 351214699
             }
           }
         ],
@@ -88,7 +88,7 @@
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 508147799
+              "duration": 383268299
             }
           },
           {
@@ -101,7 +101,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 3844615499
+              "duration": 3755433600
             }
           },
           {
@@ -114,7 +114,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 56686299
+              "duration": 74564099
             }
           },
           {
@@ -127,7 +127,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 3163203000
+              "duration": 3167126400
             }
           },
           {
@@ -140,7 +140,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 1059751299
+              "duration": 1067327499
             }
           },
           {
@@ -153,7 +153,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 428421300
+              "duration": 352052200
             }
           },
           {
@@ -166,7 +166,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 1522781199
+              "duration": 1567595200
             }
           },
           {
@@ -179,7 +179,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 7358399
+              "duration": 7856100
             }
           },
           {
@@ -187,7 +187,7 @@
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 353117400
+              "duration": 262341700
             }
           }
         ],

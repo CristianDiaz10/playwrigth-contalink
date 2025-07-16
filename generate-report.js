@@ -1,18 +1,29 @@
+// generate-report.js
+const path = require('path');
 const reporter = require('cucumber-html-reporter');
 
 const options = {
   theme: 'bootstrap',
-  jsonFile: 'reports/cucumber_report.json',   // Ruta del JSON generado por cucumber-js
-  output: 'reports/cucumber_report.html',     // Ruta donde se guardará el reporte HTML
+
+  // ➜ Siempre construimos las rutas con path.join y process.cwd()
+  //    para que funcionen sin importar dónde se ejecute el script
+  jsonFile: path.join(process.cwd(), 'reports', 'cucumber_report.json'),
+  output:  path.join(process.cwd(), 'reports', 'cucumber_report.html'),
+
   reportSuiteAsScenarios: true,
-  launchReport: false,                         // Cambia a true para abrir el reporte automáticamente
+
+  // ➜ Desactivado en CI; si lo deseas en local puedes pasarlo
+  //    a true temporalmente, no afecta la generación del archivo.
+  launchReport: false,
+
   metadata: {
-    "App Version": "1.0.0",
-    "Test Environment": "QA",
-    "Browser": "Chrome",
-    "Platform": process.platform,
-    "Executed": "Local"
-  }
+    'App Version'      : '1.0.0',
+    'Test Environment' : 'QA',
+    'Browser'          : process.env.BROWSER || 'Chrome',
+    'Platform'         : process.platform,
+    'Executed'         : process.env.GITHUB_ACTIONS ? 'CI' : 'Local',
+  },
 };
 
 reporter.generate(options);
+console.log('✅ Reporte HTML generado en:', options.output);
