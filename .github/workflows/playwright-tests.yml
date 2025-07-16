@@ -30,6 +30,12 @@ jobs:
 
       - run: npm run report:api
 
+      - name: Listar carpeta reports\api para debug
+        run: dir reports\api
+
+      - name: Listar carpeta reports para debug
+        run: dir reports
+
       - name: Upload reports
         if: always()
         uses: actions/upload-artifact@v4
