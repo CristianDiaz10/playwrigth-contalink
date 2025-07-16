@@ -1,73 +1,73 @@
-import { test, expect, request } from '@playwright/test';
+import { test, expect, request, APIRequestContext } from '@playwright/test'; 
+// 📦 Importa las funciones de testeo y tipos necesarios desde Playwright
 
-// Define un header de autorización que se usará en las peticiones API
-const AUTH_HEADER = { Authorization: 'UXTY789@!!1' };
+const AUTH_HEADER = { Authorization: 'UXTY789@!!1' }; 
+// 🔐 Header con token de autorización que se usará en todas las peticiones
+
+let apiContext: APIRequestContext; 
+// 🌐 Variable para guardar el contexto de peticiones HTTP
+// Se inicializa en beforeAll y se usa en los tests
 
 test.describe('API Invoices', () => {
-  let apiContext; // Contexto para realizar peticiones HTTP durante los tests
+// 🧪 Agrupa todos los tests relacionados con /v1/invoices bajo una misma descripción
 
-  // Antes de todos los tests, crea un contexto de API con baseURL y header de autorización
   test.beforeAll(async ({ playwright }) => {
+    // 🚀 Antes de ejecutar los tests, crea un contexto HTTP usando Playwright
     apiContext = await playwright.request.newContext({
-      baseURL: 'https://candidates-api.contalink.com',
-      extraHTTPHeaders: AUTH_HEADER,
+      baseURL: 'https://candidates-api.contalink.com',  // 🌍 URL base de la API
+      extraHTTPHeaders: AUTH_HEADER,                     // 🔐 Usa el token en cada request
     });
   });
 
-  // Después de todos los tests, libera el contexto para limpiar recursos
-  test.afterAll(async () => {
-    await apiContext.dispose();
+  test('GET /V1/invoices debe responder 200 y retornar un array (vacío o con facturas)', async () => {
+    // 📥 Test que verifica que se pueda obtener un listado de facturas con folio específico
+
+    const response = await apiContext.get('/V1/invoices?page=1&invoice_number=FAC-7081986');
+    // 📡 Realiza un GET a la API con parámetros de búsqueda
+
+    expect(response.status()).toBe(200);
+    // ✅ Verifica que la respuesta tenga código 200
+
+    const body = await response.json();
+    // 🔍 Extrae el cuerpo JSON de la respuesta
+
+    expect(Array.isArray(body.invoices)).toBe(true);
+    // ✅ Verifica que la propiedad 'invoices' sea un arreglo
+
+    if (body.invoices.length > 0) {
+      const factura = body.invoices[0];
+      // 🔍 Toma la primera factura del array
+
+      expect(factura).toHaveProperty('id');
+      expect(factura).toHaveProperty('invoiceNumber');
+      expect(typeof factura.invoiceNumber).toBe('string');
+      // ✅ Verifica que tenga propiedades esperadas
+    }
   });
 
-test('GET /v1/invoices responde 200 y contiene array válido', async ({ }) => {
-  const apiContext = await request.newContext({
-    baseURL: 'https://candidates-api.contalink.com',
-    extraHTTPHeaders: {
-      Authorization: 'UXTY789@!!1',
-    },
-  });
+  test('POST /V1/invoices - creación correcta (201)', async () => {
+    // 🧾 Crea una nueva factura con datos válidos
 
-  const response = await apiContext.get('/v1/invoices?page=1&invoice_number=FAC-7081986');
-
-  // ✅ Verifica código de respuesta
-  expect(response.status()).toBe(200);
-
-  const body = await response.json();
-
-  // ✅ Verifica que la respuesta sea un array (o tenga una propiedad que lo contenga)
-  expect(Array.isArray(body)).toBe(true);
-
-  // ✅ Si hay elementos, validar estructura (opcional)
-  if (body.length > 0) {
-    const factura = body[0];
-
-    expect(factura).toHaveProperty('id');
-    expect(factura).toHaveProperty('invoice_number');
-    expect(typeof factura.invoice_number).toBe('string');
-    // Puedes agregar más validaciones según los campos esperados
-  }
-});
-
-  // Test que crea una factura (POST /v1/invoices) y espera código 201 (creado) con datos correctos
-  test('POST /v1/invoices - creación correcta (201)', async () => {
     const newInvoice = {
       invoiceNumber: 'FAC-123456',
       total: 1000,
       estado: 'Vigente',
     };
 
-    const response = await apiContext.post('/v1/invoices', { data: newInvoice });
+    const response = await apiContext.post('/V1/invoices', { data: newInvoice });
     expect(response.status()).toBe(201);
+    // ✅ Espera que la creación devuelva código 201
 
     const body = await response.json();
-    // Verifica que la factura creada contiene los mismos datos que se enviaron
     expect(body.invoiceNumber).toBe(newInvoice.invoiceNumber);
     expect(body.total).toBe(newInvoice.total);
     expect(body.estado).toBe(newInvoice.estado);
+    // ✅ Valida que los datos devueltos coincidan con los enviados
   });
 
-  // Test que intenta crear una factura con total negativo y espera un error 400 o 422 (validación)
   test('POST /v1/invoices - total negativo debe devolver 400/422 (validación)', async () => {
+    // ❌ Intenta crear una factura inválida con total negativo
+
     const badInvoice = {
       invoiceNumber: 'FAC-123457',
       total: -500,
@@ -75,41 +75,48 @@ test('GET /v1/invoices responde 200 y contiene array válido', async ({ }) => {
     };
 
     const response = await apiContext.post('/v1/invoices', { data: badInvoice });
-    expect([400, 422]).toContain(response.status()); // Valida que sea uno de esos códigos de error
+
+    expect([400, 422]).toContain(response.status());
+    // ✅ Valida que se reciba un error de validación (400 o 422)
   });
 
-  // Test que intenta obtener una factura sin token de autorización, debe devolver 401 (no autorizado)
   test('GET /v1/invoices/:id - sin token devuelve 401', async () => {
-    // Crea un contexto sin header Authorization
-    const unauthContext = await test.request.newContext({
+    // 🔒 Verifica que la API rechaza peticiones sin autorización
+
+    const unauthContext = await request.newContext({
       baseURL: 'https://candidates-api.contalink.com',
     });
 
     const response = await unauthContext.get('/v1/invoices/123');
     expect(response.status()).toBe(401);
+    // ✅ Espera que la respuesta sea 401 no autorizado
 
-    await unauthContext.dispose();
+    await unauthContext.dispose(); // 🧹 Limpia el contexto sin token
   });
 
-  // Test que crea una factura y luego la elimina, comprobando los estados HTTP esperados
   test('DELETE /v1/invoices/:id - elimina factura creada', async () => {
+    // 🗑️ Este test crea una factura y luego la elimina
+
     const invoiceToDelete = {
       invoiceNumber: 'FAC-DELETE-001',
       total: 1500,
       estado: 'Vigente',
     };
 
-    // Crea la factura primero
     const createResp = await apiContext.post('/v1/invoices', { data: invoiceToDelete });
-    expect(createResp.status()).toBe(201);
+    expect(createResp.status()).toBe(201); // ✅ Confirma que fue creada
 
     const createdInvoice = await createResp.json();
-    // Obtiene el ID de la factura creada (puede venir en 'id' o '_id')
     const id = createdInvoice.id || createdInvoice._id || null;
-    expect(id).not.toBeNull();
+    expect(id).not.toBeNull(); // ✅ Asegura que se recibió un ID
 
-    // Elimina la factura usando su ID
     const deleteResp = await apiContext.delete(`/v1/invoices/${id}`);
-    expect(deleteResp.status()).toBe(200); // Espera respuesta exitosa
+    expect(deleteResp.status()).toBe(200); // ✅ Confirma que fue eliminada
+  });
+
+  test.afterAll(async () => {
+    await apiContext.dispose();
+    // 🧼 Después de todos los tests, se cierra el contexto para liberar recursos
   });
 });
+
