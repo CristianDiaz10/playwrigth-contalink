@@ -127,8 +127,14 @@ async eliminarTodasLasFacturas(folio: string) {
 
 
 
-  async verificarFacturaNoVisible(folio: string) {
-    console.log(`🚫 Verificando que no exista factura: ${folio}`);
-    await this.page.waitForSelector(`text=${folio}`, { state: "detached" });
-  }
+async verificarFacturaNoVisible(folio: string) {
+  // Función asincrónica que recibe un 'folio' (texto de la factura) como argumento.
+
+  console.log(`🚫 Verificando que no exista factura: ${folio}`);
+  // Muestra en consola un mensaje indicando que se está verificando que la factura no esté visible.
+
+  await this.page.waitForSelector(`text=${folio}`, { state: "detached" });
+  // Espera hasta que el elemento con ese texto ('folio') ya no esté presente en el DOM.
+  // 'detached' significa que el elemento ha sido eliminado o nunca existió.
+}
 }

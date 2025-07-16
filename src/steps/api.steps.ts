@@ -29,10 +29,21 @@ Given('que se ejecuta una prueba de carga sobre el endpoint de facturas', async 
 });
 
 Then('todas las respuestas deben tener un status {int}', function (expectedStatus: number) {
+  // Step de Cucumber que espera un número entero (como 200) desde el archivo .feature.
+  // Se guarda en la variable expectedStatus.
+
   for (const res of responses) {
+    // Recorre cada respuesta en el arreglo 'responses'.
+
     if (res.status !== expectedStatus) {
+      // Si el status de alguna respuesta no es igual al esperado...
+
       throw new Error(`❌ Se recibió status ${res.status} en una de las respuestas, se esperaba ${expectedStatus}`);
+      // Lanza un error indicando qué status se recibió y cuál se esperaba.
+      // Esto detiene el test y lo marca como fallido.
     }
   }
+
   console.log(`✅ Todas las respuestas fueron ${expectedStatus} OK`);
+  // Si todas las respuestas pasaron, se imprime un mensaje de éxito.
 });

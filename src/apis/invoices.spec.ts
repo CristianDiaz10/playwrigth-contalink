@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { test, expect, request } from '@playwright/test';
 
 // Define un header de autorización que se usará en las peticiones API
 const AUTH_HEADER = { Authorization: 'UXTY789@!!1' };
@@ -19,14 +19,34 @@ test.describe('API Invoices', () => {
     await apiContext.dispose();
   });
 
-  // Test que verifica que el endpoint GET /v1/invoices responde con 200 y un array (vacío o no)
-  test('GET /v1/invoices - debe devolver lista vacía o no vacía con 200', async () => {
-    const response = await apiContext.get('/v1/invoices');
-    expect(response.status()).toBe(200);
-
-    const body = await response.json();
-    expect(Array.isArray(body)).toBeTruthy(); // Verifica que la respuesta es un arreglo
+test('GET /v1/invoices responde 200 y contiene array válido', async ({ }) => {
+  const apiContext = await request.newContext({
+    baseURL: 'https://candidates-api.contalink.com',
+    extraHTTPHeaders: {
+      Authorization: 'UXTY789@!!1',
+    },
   });
+
+  const response = await apiContext.get('/v1/invoices?page=1&invoice_number=FAC-7081986');
+
+  // ✅ Verifica código de respuesta
+  expect(response.status()).toBe(200);
+
+  const body = await response.json();
+
+  // ✅ Verifica que la respuesta sea un array (o tenga una propiedad que lo contenga)
+  expect(Array.isArray(body)).toBe(true);
+
+  // ✅ Si hay elementos, validar estructura (opcional)
+  if (body.length > 0) {
+    const factura = body[0];
+
+    expect(factura).toHaveProperty('id');
+    expect(factura).toHaveProperty('invoice_number');
+    expect(typeof factura.invoice_number).toBe('string');
+    // Puedes agregar más validaciones según los campos esperados
+  }
+});
 
   // Test que crea una factura (POST /v1/invoices) y espera código 201 (creado) con datos correctos
   test('POST /v1/invoices - creación correcta (201)', async () => {
