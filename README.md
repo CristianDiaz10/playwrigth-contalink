@@ -113,5 +113,5 @@ Nota: si el puerto esta ocupado ejecutar:
 1-netstat -ano | findstr :9323
 2-taskkill /PID 32756 /F
 
-
+API
 1 - get : https://candidates-api.contalink.com/V1/invoices?page=1&invoice_number=FAC-7081986 
