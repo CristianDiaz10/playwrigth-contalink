@@ -93,3 +93,25 @@ PROBLEMAS DE ERROR
 La URL es correcta.
 El token o header Authorization es válido.
 La API esté activa y disponible.
+
+
+Ejecutar k6 performance:
+k6 run loadtest.js
+
+Para correr test playwright:
+1- npm run test:chrome
+2- node generate-report.js
+
+Ejecutar
+1-npx cucumber-js --require-module ts-node/register --require src/steps/**/*.ts --require src/support/world.ts --format json:reports/cucumber_report.json
+2-node generate-report.js ó reports/cucumber_report.html
+
+Ejecutar APIS
+1-npx playwright test src/apis/invoices.spec.ts ó npm run test:api
+2-npm run report:api
+Nota: si el puerto esta ocupado ejecutar: 
+1-netstat -ano | findstr :9323
+2-taskkill /PID 32756 /F
+
+
+1 - get : https://candidates-api.contalink.com/V1/invoices?page=1&invoice_number=FAC-7081986
