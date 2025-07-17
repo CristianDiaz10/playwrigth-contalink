@@ -114,4 +114,4 @@ Nota: si el puerto esta ocupado ejecutar:
 2-taskkill /PID 32756 /F
 
 
-1 - get : https://candidates-api.contalink.com/V1/invoices?page=1&invoice_number=FAC-7081986
+1 - get : https://candidates-api.contalink.com/V1/invoices?page=1&invoice_number=FAC-7081986 
